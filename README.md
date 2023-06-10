@@ -41,7 +41,7 @@ En el curso original el instructor propone como muy buena práctica montar un en
 
 - De momento al usar WAMP y cambiar las rutas de acceso el servidor de aplicaciones no responde correctamente, asi que ire usando el de la terminal de **php** bajo **linea de comandos de windows (CMD)** para arrancar el servidor de desarrollo y apreciar los cambios. Esto se puede hacer de dos maneras, si no funciona una probar la siguiente:
 
-1. `php artisan serve` Este comando abre el puerto 8000 de **localhost**. Abrir un navegador y teclear **localhost:8080**, encontrará el index del proyecto.
+1. `php artisan serve` Este comando abre el puerto 8000 de **localhost**. Abrir un navegador y teclear **localhost:8000**, encontrará el index del proyecto.
 
 2. `php -S localhost:8000 server.php` Este comando tambien abre el puerto 8000 de localhost pero buscando el archivo de php. Esto solo podría dar un problema que explico mas abajo. Si no, ira perfecto.
 
@@ -56,3 +56,7 @@ Al crear los repositorios con composer de Laravel, este crea un **git ignore** q
 `php -S localhost:8000 server.php` Donde aparecerá un error que no encuentra el index. Esto se debe, analizando el codigo de la aplicación de la linea exacta a que tiene que pasar por la carpeta **vendor** y de ahi redirigir a **index.php**, pero esa carpeta al subir el repositorio no existe por la restricción de **.gitignore**
 
 2. Al trabajar con un Framework, como en este caso siempre puede salir una pila de errores especificas que correspondan a un sistema operativo, puerto de uso o navegador donde se visualice en concreto. Estos son temas que no puedo abordar. Pero con una búsqueda rápida en Google seguro que das con la solución.
+
+## Comandos de consola
+
+`php artisan make:controller NombreControlador` Este comando crea en la raiz correspondiente del proyecto el controlador con el nombre asociado. Añadiendo la opcion `--resource` antes del nombre se crea un archivo mas completo
