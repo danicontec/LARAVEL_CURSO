@@ -60,3 +60,7 @@ Al crear los repositorios con composer de Laravel, este crea un **git ignore** q
 ## Comandos de consola
 
 `php artisan make:controller NombreControlador` Este comando crea en la raiz correspondiente del proyecto el controlador con el nombre asociado. Añadiendo la opcion `--resource` antes del nombre se crea un archivo mas completo
+
+`php artisan make:component nombreVista` Este comando crea una vista y su componente en nuestro proyecto de Laravel.
+
+`php artisan route:list` Imprime en consola todos los links que tiene nuestro proyecto Laravel. Si existen llaves en el link {} es que ese link admite parametros despues de un slash /.

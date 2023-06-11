@@ -13,10 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 //En mi caso al utilizar Laravel superior a la version 8 he de indicar la ruta completa
+
 Route::get('/inicio', 'App\Http\Controllers\EjemploControler@inicio');
+Route::get('/', 'App\Http\Controllers\WebPagesController@inicio');
+Route::get('/somos', 'App\Http\Controllers\WebPagesController@somos');
+Route::get('/foro', 'App\Http\Controllers\WebPagesController@foro');
+Route::get('/ubicacion', 'App\Http\Controllers\WebPagesController@ubicacion');
+
+// La instruccion de abajo crea los links automaticamente, siempre y cuando hayamos creado el Controller con la opcion --resource
+
+// Route::resource("post","App\Http\Controllers\WebPagesController");
