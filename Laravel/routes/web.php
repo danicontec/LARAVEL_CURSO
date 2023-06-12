@@ -25,6 +25,7 @@ Route::get('/', 'App\Http\Controllers\WebPagesController@inicio');
 Route::get('/somos', 'App\Http\Controllers\WebPagesController@somos');
 Route::get('/foro', 'App\Http\Controllers\WebPagesController@foro');
 Route::get('/ubicacion', 'App\Http\Controllers\WebPagesController@ubicacion');
+Route::get('/ubicacion', 'App\Http\Controllers\WebPagesController@contacto');
 
 // La instruccion de abajo crea los links automaticamente, siempre y cuando hayamos creado el Controller con la opcion --resource
 

@@ -21,4 +21,8 @@ class WebPagesController extends Controller{
     public function ubicacion(){
         return view ('components/ubicacion');
     }
+
+    public function contacto(){
+        return view ('components/contacto');
+    }
 }
