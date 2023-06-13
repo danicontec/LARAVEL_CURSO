@@ -37,6 +37,12 @@ En el curso original el instructor propone como muy buena práctica montar un en
 
 - Analizar bien la estructura de carpetas y sus archivos antes de que crezca para ver su estructura principal es importante.
 
+### Ruta recomendada alternativa
+
+1. Usar el comando `php -S localhost:8000 server.php` para ver directamente el index del proyecto.
+
+2. En la carpeta de nuestrro proyecto, renombrar el archivo que genera composer de **.env.example** a solamente **.env**. Para evitar problemas de nombrado de archivos en windows que empiezan por un **punto**, se hara por terminal con el comando `ren .env.example .env`. Esto lo que hara será solucionar problems en el futuro copn otros comandos de `php artisan` como `php artisan key:generate`. Este ultimo comando soluciona problemas con el servidor web que interpreta nuestro código como por ejemplo **Error 500: Internal server**.
+
 ### Problemas con rutas
 
 - De momento al usar WAMP y cambiar las rutas de acceso el servidor de aplicaciones no responde correctamente, asi que ire usando el de la terminal de **php** bajo **linea de comandos de windows (CMD)** para arrancar el servidor de desarrollo y apreciar los cambios. Esto se puede hacer de dos maneras, si no funciona una probar la siguiente:
@@ -54,6 +60,8 @@ Al crear los repositorios con composer de Laravel, este crea un **git ignore** q
 1. Si clonas este repositorio, quizas algunas funcionalidades de comandos no funcionen, ya que el archivo de **.gitignore**, prohibe la subida de la carpeta de **vendor**. Podria entrar y editar el archivo pero quiero registrar algunos problemas que pudieran surgir con un desarrollo real o al clonar archivos de otros repositorios. Esto podria pasar por ejemplo con el comando de iniciacion de server:
 
 `php -S localhost:8000 server.php` Donde aparecerá un error que no encuentra el index. Esto se debe, analizando el codigo de la aplicación de la linea exacta a que tiene que pasar por la carpeta **vendor** y de ahi redirigir a **index.php**, pero esa carpeta al subir el repositorio no existe por la restricción de **.gitignore**
+
+Para solucionar esto, hay que abrir un **CMD** en la ruta donde este el archivo **composer** y ejecutar el comando `composer install`. Esto volvera a generar todas las librerias y dependencias del proyecto.
 
 2. Al trabajar con un Framework, como en este caso siempre puede salir una pila de errores especificas que correspondan a un sistema operativo, puerto de uso o navegador donde se visualice en concreto. Estos son temas que no puedo abordar. Pero con una búsqueda rápida en Google seguro que das con la solución.
 
