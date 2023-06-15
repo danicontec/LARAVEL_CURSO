@@ -31,7 +31,7 @@ En el curso original el instructor propone como muy buena práctica montar un en
 
 `composer create-project laravel/laravel Laravel`
 
-2. Abrir **WAMP** e ir hasta la carpeta public en el navegador. Alli estara la página principal por defecto del proyecto de Laravel. 
+2. Abrir **WAMP** e ir hasta la carpeta public en el navegador. Alli estara la página principal por defecto del proyecto de Laravel. Sólo se usará este servidor para trabajar con **phpmyadmin**.
 
 - Tener en cuenta que es un ejemplo, a medida que vaya avanzando el curso analizaré si crearé mas carpetas o trabajaré sobre la misma de Laravel añadiendo comentarios.
 
@@ -45,11 +45,11 @@ En el curso original el instructor propone como muy buena práctica montar un en
 
 ### Problemas con rutas
 
-- De momento al usar WAMP y cambiar las rutas de acceso el servidor de aplicaciones no responde correctamente, asi que ire usando el de la terminal de **php** bajo **linea de comandos de windows (CMD)** para arrancar el servidor de desarrollo y apreciar los cambios. Esto se puede hacer de dos maneras, si no funciona una probar la siguiente:
+- De momento al usar WAMP y cambiar las rutas de acceso el servidor de aplicaciones no responde correctamente, asi que iré usando el de la terminal de **php** bajo **linea de comandos de windows (CMD)** para arrancar el servidor de desarrollo y apreciar los cambios. Esto se puede hacer de dos maneras, si no funciona una probar la siguiente:
 
 1. `php artisan serve` Este comando abre el puerto 8000 de **localhost**. Abrir un navegador y teclear **localhost:8000**, encontrará el index del proyecto.
 
-2. `php -S localhost:8000 server.php` Este comando tambien abre el puerto 8000 de localhost pero buscando el archivo de php. Esto solo podría dar un problema que explico mas abajo. Si no, ira perfecto.
+2. `php -S localhost:8000 server.php` Este comando también abre el puerto 8000 de localhost pero buscando el archivo de php. Esto solo podría dar un problema que explico mas abajo. Si no, ira perfecto.
 
 **Tener en cuenta que para poder visualizar lo que estamos haciendo, la terminal de Windows tiene que estar abierta y ejecutando uno de los dos comandos**.
 
@@ -59,7 +59,7 @@ Al crear los repositorios con composer de Laravel, este crea un **git ignore** q
 
 1. Si clonas este repositorio, quizas algunas funcionalidades de comandos no funcionen, ya que el archivo de **.gitignore**, prohibe la subida de la carpeta de **vendor**. Podria entrar y editar el archivo pero quiero registrar algunos problemas que pudieran surgir con un desarrollo real o al clonar archivos de otros repositorios. Esto podria pasar por ejemplo con el comando de iniciacion de server:
 
-`php -S localhost:8000 server.php` Donde aparecerá un error que no encuentra el index. Esto se debe, analizando el codigo de la aplicación de la linea exacta a que tiene que pasar por la carpeta **vendor** y de ahi redirigir a **index.php**, pero esa carpeta al subir el repositorio no existe por la restricción de **.gitignore**
+`php -S localhost:8000 server.php` Donde aparecerá un error que no encuentra el index. Esto se debe, analizando el código de la aplicación de la linea exacta a que tiene que pasar por la carpeta **vendor** y de ahí redirigir a **index.php**, pero esa carpeta al subir el repositorio no existe por la restricción de **.gitignore**
 
 Para solucionar esto, hay que abrir un **CMD** en la ruta donde este el archivo **composer** y ejecutar el comando `composer install`. Esto volvera a generar todas las librerias y dependencias del proyecto.
 
@@ -67,8 +67,36 @@ Para solucionar esto, hay que abrir un **CMD** en la ruta donde este el archivo 
 
 ## Comandos de consola
 
-`php artisan make:controller NombreControlador` Este comando crea en la raiz correspondiente del proyecto el controlador con el nombre asociado. Añadiendo la opcion `--resource` antes del nombre se crea un archivo mas completo
+`php artisan make:controller NombreControlador` Este comando crea en la raiz correspondiente del proyecto el controlador con el nombre asociado. Añadiendo la opcion `--resource` antes del nombre se crea un archivo más completo
 
-`php artisan make:component nombreVista` Este comando crea una vista y su componente en nuestro proyecto de Laravel.
+`php artisan make:component nombreVista` Este comando crea una vista y su componente en el proyecto de Laravel.
 
-`php artisan route:list` Imprime en consola todos los links que tiene nuestro proyecto Laravel. Si existen llaves en el link {} es que ese link admite parametros despues de un slash /.
+`php artisan route:list` Imprime en consola todos los links que tiene el proyecto Laravel. Si existen llaves en el link {} es que ese link admite parametros despues de un slash /.
+
+`php artisan migrate` Este comando se comunica con el archivo artisan del proyecto, este a su vez busca las configuraciones de la base de datos en el atrchivo **.env** y crea las tablas en una base de datis existente.
+
+## Bases de datos
+
+Para trabajar con Bases de Datos bajo el Framework de Laravel hay que tener en cuenta diversos aspectos:
+
+1. El archivo **database.php** de la carpeta de **config** muestra solo aspectos generales de los distintos gestores de bases de datos con los que trabaja Laravel.
+
+2. Los datos más relevantes están en el archivo oculto **.env** de la carpeta **vendor**, ahí estarán los datos como usuarios, contraseñas, puertos y codificación de caracteres.
+
+3. A la hora de crear un proyecto, Laravel ya crea unos archivos denominados **migrations**, que se encuentran en la ruta de **Proyecto/database/migrations**, estos archivos ya son para trabajar con las tablas. Para trabajar con mas datos se crearan mas archivos de este tipo.
+
+4. Por defecto el archivo **.env**  tiene una base de datos llamada laravel que no existe en nuestro **mysql**. Si da error al principio y no puede crear las tablas, crear la base de datos manualmente.
+
+4. Después de ejecutar el comando de `php artisan migrate`, este va al servidor de **WAMP** ejecutado y buscará **phpmyadmin** para crear las tablas que se indicadan en los archivos de **database/migrations/\***.
+
+5. Para crear un archivo migrations, se usara el comando de `php artisan make:migration create_nombreTabla_table --create="nombreTabla"`. El **nombreTabla** pasado como opción es el nombre de la tabla que dara en el entorno de **mySQL**, el primero es una convención de nombre que tendrá el archivo con extensión **php** para encontrar su función de manera más sencilla. Aunque no le especifiquemos una fecha por defecto pondra este dato al inicio del nombre del archivo.
+
+6. Si las tablas que se han creado con estos comandos tienen una estructura no deseada, **y solo si son nuevas (no tienen datos)** ejecutar el comando `php artisan migrate:rollback` despues ir a los archivos modificarlos y volver a ejecutar el comando de **migrate**. 
+
+7. Para eliminar todas las tablas creadas con Laravel, ejecutar el comando `php artisan migrate:reset`. Si estas tablas tienen datos también se borrarán.
+
+### Errores detectados en migracion
+
+> Los archivos generados por Laravel podrian dar conflictos cuando se mezclan con los creados manualmente, lanzando excepciones de consultas SQL. Para evitar esto, entrar dentro de estos archivos y borrar los métodos de **up** y **down**. En algunos casos al ejecutar `php artisan migrate`, el Framework trata de crear otra vez alguno de estos archivos, por eso es recomendable borrar los métodos y evitar fallos en la migración.
+
+

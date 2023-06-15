@@ -13,5 +13,7 @@
             <h1>FORO</h1>
             <a href="/"><button>Inicio</button></a>
         </div>
+
+        <script src="{{asset('public/js/bootstrap.js')}}"></script>
     </body>
 </html>
