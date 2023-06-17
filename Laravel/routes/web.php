@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\articulosNuevos;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -79,5 +80,18 @@ Route::get('/insert', function(){
     } else {
 
         echo "Fallo al insertar registros";
+    }
+});
+
+//Metodo que trabaja con el modelo creado para mostrarlos todos, devuelve los datos en parentesis
+//Para que este model con Eloquent funcione, debe tener un campo id y debe ser clave primaria, ademas de llamarse igual pero en singular a como se llama la tabla
+//Si esto no es asi, hay que indicarselo a traves de atributos protegidos $table o $primaryKey pasando estos datos
+Route::get('/articulos', function(){
+    $articulos = articulosNuevos::all();
+
+    foreach($articulos as $art){
+        echo $art . "<br>";
+        //Para acceder a una unica propiedad se hara a traves de un objeto
+        echo "<br>". $art -> nombre;
     }
 });

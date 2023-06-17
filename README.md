@@ -20,7 +20,7 @@ En el curso original el instructor propone como muy buena práctica montar un en
 
 ## Entorno de Trabajo
 
-- Version de Laravel 9.x
+- Version de Laravel 8.83
 - Sistema operativo Windows 10
 - Servidor [WAMP](https://www.wampserver.com/en/)
 - Editor de texto de preferencia que trabaje con lenguaje PHP.
