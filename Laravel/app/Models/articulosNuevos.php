@@ -8,5 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 //Si esto no es asi, hay que indicarselo a traves de atributos protegidos $table o $primaryKey pasando estos datos
 class articulosnuevos extends Model
 {
+
+    //Para indicar que sera en masa tenemos que usar la variable $fillable y permitir que las hijas lean las propiedades.
+    protected $fillable=["nombre", "pais", "precio", "descripcion", "imagen", "observaciones"];
     use HasFactory;
 }

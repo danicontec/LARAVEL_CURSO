@@ -102,3 +102,74 @@ Route::get('/filtros', function(){
     $articulosFiltrados = articulosNuevos::all()->where("id", "3");
     return $articulosFiltrados;
 });
+
+//Para trabajar con inserciones en la base de datos se hara tambien a traves de objetos, donde cada campo de la tabla es una propiedad
+
+Route::get('/insercion', function(){
+//Al hacer la insercion de esta forma los campos de fecha especificados en el model se rellenan solos
+    $articulo = new articulosNuevos;
+    $articulo -> nombre = "JUGUETE";
+    $articulo -> descripcion = "Para niños";
+    $articulo -> imagen = "No disponible";
+    $articulo -> pais = "Alemania";
+    $articulo -> precio = "28.73";
+    $articulo -> observaciones = "Aun no esta incluido en esta tienda";
+
+    $saved = $articulo -> save();
+
+    if ($saved){
+        echo "Valores insertados correctamente";
+    } else {
+        echo "Fallo al insertar registro";
+    }
+});
+
+Route::get('/actualizacion', function(){
+    //Al hacer la actualizacion de esta forma los campos de fecha especificados en el model se actualizan en el campo correspondiente
+    $articulo = articulosNuevos::find("4");
+    $articulo -> nombre = "JUGUETE";
+    $articulo -> descripcion = "Para niños";
+    $articulo -> imagen = "No disponible";
+    $articulo -> pais = "Alemania";
+    $articulo -> precio = "28.73";
+    $articulo -> observaciones = "El articulo esta ya incluido en tienda";
+
+    $saved = $articulo -> save();
+
+    if ($saved){
+        echo "El registro se ha actualizado";
+    } else {
+        echo "Fallo al actualizar el registro";
+    }
+});
+
+Route::get('/deletecondition', function(){
+
+    // Hay dos maneras de borrar, por condicion y por dato, aqui se recogen los dos.
+    // Se puede usar otros metodos segun lo que se requiera buscar antes de borrar, por cada condicion llamar otro método where
+    $deletewhere = articulosNuevos::where("pais","!=", "españa") -> delete();
+    // $deletewhere = articulosNuevos::where("pais", "españa") -> delete();
+    if ($deletewhere){
+        echo "Borrado con exito";
+    } else {
+        echo "Fallo al borrar";
+    }
+
+});
+
+// En este método se puede usar una insercion a traves de un Array asociativo.
+// Para usar esto hay que indicarle al modelo del que parte que se va a realizar esta accion en masa.
+//Los campos deben ser exactamente los mismos entre la variable de $fillable y el array asociativo
+Route::get('/insertvalues', function(){
+    $quantity = articulosNuevos::create(["nombre"=>"mochila", "precio"=>15.42,
+     "pais"=>"Dinamarca", "descripcion"=>"Articulo importado despues de fabricacion",
+     "imagen"=>"No", "observaciones"=>"Ninguna"]);
+
+    if($quantity){
+        echo "Registro insertado con exito";
+    } else {
+        echo "Fallo en la insercion";
+    }
+
+});
+
