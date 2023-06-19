@@ -91,7 +91,14 @@ Route::get('/articulos', function(){
 
     foreach($articulos as $art){
         echo $art . "<br>";
-        //Para acceder a una unica propiedad se hara a traves de un objeto
+        //Para acceder a una unica propiedad se hara a traves de un objeto tomando como propiedad el nombre del campo
         echo "<br>". $art -> nombre;
     }
+});
+
+// Para aplicar filtros en eloquent existen diversas funciones explicadas en la documentacion https://laravel.com/docs/8.x/queries
+
+Route::get('/filtros', function(){
+    $articulosFiltrados = articulosNuevos::all()->where("id", "3");
+    return $articulosFiltrados;
 });
