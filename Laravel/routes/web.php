@@ -173,3 +173,39 @@ Route::get('/insertvalues', function(){
 
 });
 
+//Ruta para probar el softdelete
+Route::get('/softdelete', function(){
+    $softdelete = articulosNuevos::find(5)->delete();
+
+    if($softdelete){
+        echo "Registro mandado a papelera con exito";
+    }
+});
+
+//Para ver articulo borrado la siguiente ruta
+//Para ver el articulo exacto hay que pasar un where como metodo de objeto sino aparceran todos como en este ejemplo
+Route::get('/seedeletes', function(){
+
+    $articulos = articulosnuevos::withTrashed() -> get();
+
+    return $articulos;
+});
+
+// Para borrar un registro sin que se registre en la papelera seria con forceDelete
+
+Route::get('/forcedelete', function(){
+    $forcedelete = articulosNuevos::withTrashed() -> where("id", 5) -> forceDelete();
+});
+
+// Para restaurar los registros de la papelera se hace co el metodo restore
+Route::get('/restore', function(){
+
+    $restored = articulosNuevos::withTrashed()->restore();
+
+    if($restored){
+        echo "Articulos restaurados con exito";
+    } else {
+        echo "No hay nada que restaurar";
+    }
+});
+

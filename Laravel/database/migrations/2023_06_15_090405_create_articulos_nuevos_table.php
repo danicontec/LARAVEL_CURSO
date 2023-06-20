@@ -27,6 +27,7 @@ class CreateArticulosNuevosTable extends Migration
             $table->string('pais');
             $table->float('precio');
             $table->text('observaciones');
+            //Esta propiedad refleja en tiempo cuando crea y cuando se modifica un registro en tabla de forma automatica.
             $table->timestamps();
         });
     }
