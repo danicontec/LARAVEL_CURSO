@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\articulosNuevos;
+use App\Models\Cliente;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -206,6 +207,27 @@ Route::get('/restore', function(){
         echo "Articulos restaurados con exito";
     } else {
         echo "No hay nada que restaurar";
+    }
+});
+
+//Ruta provisional para añadir datos de clientes
+Route::get('/addcliente', function(){
+    $cliente = new Cliente;
+    $cliente -> nombre = 'Javier';
+    $cliente -> apellidos = 'Perez';
+
+    $saved = $cliente -> save();
+
+    $cliente2 = new Cliente;
+    $cliente2 -> nombre = 'Demian';
+    $cliente2 -> apellidos = 'Naranjo';
+
+    $saved2 = $cliente2 -> save();
+
+
+
+    if($saved && $saved2){
+        echo "Registros guardados con exito";
     }
 });
 

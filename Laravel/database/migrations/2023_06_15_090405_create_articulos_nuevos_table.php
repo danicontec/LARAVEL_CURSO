@@ -22,6 +22,7 @@ class CreateArticulosNuevosTable extends Migration
         Schema::create('articulosNuevos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->foreign('id_cliente')->references('id')->on('clientes');
             $table->string('descripcion');
             $table->string('imagen');
             $table->string('pais');
