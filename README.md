@@ -99,4 +99,6 @@ Para trabajar con Bases de Datos bajo el Framework de Laravel hay que tener en c
 
 > Los archivos generados por Laravel podrian dar conflictos cuando se mezclan con los creados manualmente, lanzando excepciones de consultas SQL. Para evitar esto, entrar dentro de estos archivos y borrar los métodos de **up** y **down**. En algunos casos al ejecutar `php artisan migrate`, el Framework trata de crear otra vez alguno de estos archivos, por eso es recomendable borrar los métodos y evitar fallos en la migración.
 
+## Curiosidades
 
+1. Los archivos de migration guardan en su nombre una cadena de caracteres que corresponden a la fecha de creación. Si uno de ellos que corresponde a la tabla que tenga una Foreign Key, pero esta aun no ha sido creada, saltara un error de sintaxis, al ejecutar otra vez el comando de `php artisan migrate`, ya encontrara el campo y lo creara en la tabla correspondiente, pero primero saltara un error como en los archivos de este repositorio hasta que la tabla este creada.  

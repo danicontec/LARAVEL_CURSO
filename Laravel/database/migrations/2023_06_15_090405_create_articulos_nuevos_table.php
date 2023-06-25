@@ -19,18 +19,22 @@ class CreateArticulosNuevosTable extends Migration
 
     public function up()
     {
-        Schema::create('articulosNuevos', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
-            $table->foreign('id_cliente')->references('id')->on('clientes');
-            $table->string('descripcion');
-            $table->string('imagen');
-            $table->string('pais');
-            $table->float('precio');
-            $table->text('observaciones');
-            //Esta propiedad refleja en tiempo cuando crea y cuando se modifica un registro en tabla de forma automatica.
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('articulosNuevos')){
+
+            Schema::create('articulosNuevos', function (Blueprint $table) {
+                $table->id();
+                $table->string('nombre');
+                $table->unsignedBigInteger('clientes_id');
+                $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
+                $table->string('descripcion');
+                $table->string('imagen');
+                $table->string('pais');
+                $table->float('precio');
+                $table->text('observaciones');
+                //Esta propiedad refleja en tiempo cuando crea y cuando se modifica un registro en tabla de forma automatica.
+                $table->timestamps();
+            });
+        }
     }
 
     /**
