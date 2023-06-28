@@ -24,7 +24,7 @@ class CreateArticulosNuevosTable extends Migration
             Schema::create('articulosNuevos', function (Blueprint $table) {
                 $table->id();
                 $table->string('nombre');
-                $table->unsignedBigInteger('clientes_id');
+                $table->unsignedBigInteger('cliente_id');
                 $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
                 $table->string('descripcion');
                 $table->string('imagen');
