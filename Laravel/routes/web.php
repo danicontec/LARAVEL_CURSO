@@ -232,6 +232,10 @@ Route::get('/addcliente', function(){
 });
 
 Route::get('/cliente/1/articulo', function(){
-    return Cliente::find(1)->articuloNuevo;
+     return Cliente::find(1)->articuloNuevo;
+});
+
+Route::get('/cliente/2/articulos', function(){
+   return Cliente::find(1)->articulos;
 });
 
