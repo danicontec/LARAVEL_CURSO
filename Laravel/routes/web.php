@@ -239,3 +239,14 @@ Route::get('/cliente/2/articulos', function(){
    return Cliente::find(1)->articulos;
 });
 
+// Lo referenciado entre llaves es una variable proisional para poner el dato esperado y poder cambiarlo
+Route::get('/cliente/{id}/perfil', function($id){
+
+    $cliente = Cliente::find($id);
+
+    foreach($cliente->perfils as $perfil){
+
+        return $perfil -> nombre;
+    }
+});
+

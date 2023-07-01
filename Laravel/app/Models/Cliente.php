@@ -19,5 +19,10 @@ class Cliente extends Model
         return $this -> hasMany("App\Models\articulosNuevos");
     }
 
+    // Este método referencia de muchos a muchos entre  la tabla de referencia de claves, los perfiles y los clientes.
+    public function perfils(){
+        return $this->belongsToMany("App\Models\Perfil");
+    }
+
     use HasFactory;
 }
