@@ -24,5 +24,11 @@ class Cliente extends Model
         return $this->belongsToMany("App\Models\Perfil");
     }
 
+    // Metodo para trabajar con relaciones polimorficas a traves de una tabla existente
+    public function calificaciones(){
+
+        return $this -> morphMany("App\Models\Calificaciones", "calificacion");
+    }
+
     use HasFactory;
 }

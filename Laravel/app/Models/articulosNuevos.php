@@ -15,5 +15,14 @@ class articulosnuevos extends Model
     protected $dates = ['deleted_at'];
     //Para indicar que sera en masa tenemos que usar la variable $fillable y permitir que las hijas lean las propiedades.
     protected $fillable=["nombre", "pais", "precio", "descripcion", "imagen", "observaciones"];
+
+
+    //Metodo para trabajar con relaciones polimorficas de Eloquent
+    public function calificaciones(){
+
+        return $this -> morphMany("App\Models\Calificaciones", "calificacion");
+    }
+
+
     use HasFactory;
 }

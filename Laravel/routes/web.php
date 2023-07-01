@@ -250,3 +250,15 @@ Route::get('/cliente/{id}/perfil', function($id){
     }
 });
 
+//Ruta para referenciar la relacion polimorfica
+
+Route::get('/calificaciones', function(){
+
+    $articulos = articulosNuevos::find(1);
+
+  foreach($articulos->calificaciones as $calificacion){
+
+    return $calificacion -> calificacion;
+  }
+});
+
