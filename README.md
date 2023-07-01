@@ -75,6 +75,8 @@ Para solucionar esto, hay que abrir un **CMD** en la ruta donde este el archivo 
 
 `php artisan migrate` Este comando se comunica con el archivo artisan del proyecto, este a su vez busca las configuraciones de la base de datos en el atrchivo **.env** y crea las tablas en una base de datis existente.
 
+`php artisan tinker` Abre un powershell dentro del mismo terminal y sirve para hacer operaciones de laravel con bases de datos, formularios o código php y ver si no existen errores en cualquiera de los puntos con los que se trabaja. 
+
 ## Bases de datos
 
 Para trabajar con Bases de Datos bajo el Framework de Laravel hay que tener en cuenta diversos aspectos:
