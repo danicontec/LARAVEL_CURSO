@@ -17,5 +17,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/inicio', 'App\Http\Controllers\ProductosController@index');
-Route::get('/crear', 'App\Http\Controllers\ProductosController@create');
+// Route::get('/inicio', 'App\Http\Controllers\ProductosController@index');
+// Route::get('/crear', 'App\Http\Controllers\ProductosController@create');
