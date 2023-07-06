@@ -1,9 +1,9 @@
 @extends("../layouts/plantilla")
 <h1>Formulario de ingreso</h1>
-<form action="App/resources/views/productos">
+<form action="/productos.show">
     <input type="text" name="Nombre">
 
-    <button type="submit">Enviar</button>
+    <input type="submit" value="Enviar">
 
 
 </form>

@@ -12,10 +12,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('/productos', 'App\Http\Controllers\ProductosController');
+
+// Este método genera las rutas automaticas con el controlador pero genera problemas con los formularios
+// Route::resource('/productos', 'App\Http\Controllers\ProductosController');
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/inicio', 'App\Http\Controllers\ProductosController@index');
-// Route::get('/crear', 'App\Http\Controllers\ProductosController@create');
+ Route::get('/inicio', 'App\Http\Controllers\ProductosController@index');
+ Route::get('/crear', 'App\Http\Controllers\ProductosController@create');

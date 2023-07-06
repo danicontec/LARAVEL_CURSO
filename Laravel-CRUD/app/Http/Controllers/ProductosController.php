@@ -44,7 +44,7 @@ class ProductosController extends Controller
      */
     public function show($id)
     {
-        //
+        return "Hola";
     }
 
     /**
