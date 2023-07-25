@@ -21,3 +21,8 @@ Route::get('/', function () {
 
  Route::get('/inicio', 'App\Http\Controllers\ProductosController@index');
  Route::get('/crear', 'App\Http\Controllers\ProductosController@create');
+ Route::get('/actualizar', 'App\Http\Controllers\ProductosController@edit');
+ Route::get('/borrar', 'App\Http\Controllers\ProductosController@destroy');
+ Route::post('/envio','App\Http\Controllers\ProductosController@muestra');
+ 
+

@@ -104,3 +104,8 @@ Para trabajar con Bases de Datos bajo el Framework de Laravel hay que tener en c
 ## Curiosidades
 
 1. Los archivos de migration guardan en su nombre una cadena de caracteres que corresponden a la fecha de creación. Si uno de ellos que corresponde a la tabla que tenga una Foreign Key, pero esta aun no ha sido creada, saltara un error de sintaxis, al ejecutar otra vez el comando de `php artisan migrate`, ya encontrara el campo y lo creara en la tabla correspondiente, pero primero saltara un error como en los archivos de este repositorio hasta que la tabla este creada.  
+
+
+## Advertencias:
+
+A la hora de comprobar las modificaciones que tengan que ver con cambios de usuario, ya sea intruduccion de datos o su borrado, manejo de sesiones y demas cosas que influyan en factores de usuario que se introducen en el código. **Es recomendable limpiar la cache y reiniciar el servidor.**

@@ -32,11 +32,12 @@ class ProductosController extends Controller
      */
     public function store(Request $request)
     {
-        $productos = new Producto;
-        $productos->nombre = $request->nombre;
-
+        // $productos = new Producto;
+        // $productos->nombre = $request->nombre;
+        return view('productos.insert');
+        
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -46,7 +47,7 @@ class ProductosController extends Controller
     {
         return "Hola";
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -56,7 +57,7 @@ class ProductosController extends Controller
     {
         //
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -65,9 +66,10 @@ class ProductosController extends Controller
      */
     public function update(Request $request, $id)
     {
+        return view('productos.update');
         //
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -75,6 +77,11 @@ class ProductosController extends Controller
      */
     public function destroy($id)
     {
+        return view('productos.delete');
         //
+    }
+    
+    public function muestra(){
+        return "Respuesta correcta del formulario";
     }
 }
