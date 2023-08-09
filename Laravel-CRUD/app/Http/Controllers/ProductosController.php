@@ -32,9 +32,16 @@ class ProductosController extends Controller
      */
     public function store(Request $request)
     {
-        // $productos = new Producto;
-        // $productos->nombre = $request->nombre;
-        return view('productos.insert');
+        $productos = new Producto;
+        $productos->nombre = $request->nombre;
+        $productos->save();
+        
+        if ($productos->save()){
+
+            return "Datos almacenados";
+        } else {
+            return "Error al almacenar";
+        }
         
     }
     
